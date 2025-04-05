@@ -42,7 +42,7 @@
 
 
         <div class="hidden sm:flex sm:items-center sm:ml-auto">
-          <input type="text" placeholder="Search..."
+          <input type="text" placeholder="Search..." v-model="searchTerm"
             class="w-48 rounded-md border border-transparent bg-gray-700 px-3 py-1.5 text-sm text-white placeholder-gray-400 focus:border-white focus:outline-none focus:ring-2 focus:ring-white transition-all" />
         </div>
 
@@ -54,7 +54,7 @@
       <div class="space-y-1 px-2 pt-2 pb-3">
 
         <div class="pb-2">
-          <input type="text" placeholder="Search..."
+          <input type="text" placeholder="Search..." v-model="searchTerm"
             class="w-full rounded-md border border-transparent bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus:border-white focus:outline-none focus:ring-2 focus:ring-white transition-all" />
         </div>
 
@@ -72,8 +72,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useSearchStore } from '@/stores/search'
+
+
+const searchStore = useSearchStore()
 
 const isOpen = ref(false)
 const route = useRoute()
@@ -83,6 +87,14 @@ const navItems = [
   { name: 'categories', path: '/categories' },
   { name: 'favorites', path: '/favorites' },
 ]
+
+
+const searchTerm = computed({
+  get: () => searchStore.searchTerm,
+  set: (value) => searchStore.setSearchTerm(value)
+})
+
+
 </script>
 
 <style scoped>

@@ -10,7 +10,9 @@
         <h3 class="text-sm text-gray-700 font-semibold">
           <a :href="product.link" class="hover:underline">{{ product.title }}</a>
         </h3>
-        <p class="mt-1 text-sm text-gray-500">{{ product.description }}</p>
+        <p class="mt-1 text-sm text-gray-500">
+          {{ product.description.length > 30 ? product.description.substring(0, 30) + " ..." : product.description }}
+        </p>
       </div>
       <p class="text-sm font-medium text-gray-900">${{ product.price }}</p>
     </div>
