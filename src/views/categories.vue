@@ -1,5 +1,8 @@
 <template>
-  <div class="w-full px-4 py-8">
-    categories
-  </div>
+  <Categories />
+
 </template>
+
+<script setup lang="ts">
+import Categories from '@/components/categories.vue';
+</script>

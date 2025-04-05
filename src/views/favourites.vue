@@ -1,5 +1,8 @@
 <template>
-  <div class="w-full px-4 py-8">
-    favourites
-  </div>
+  <favourites />
+
 </template>
+
+<script setup lang="ts">
+import favourites from '@/components/favourites.vue';
+</script>
