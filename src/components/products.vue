@@ -25,6 +25,13 @@ import { useFavoriteStore } from '@/stores/favourite'
 import { useLastVisitStore } from '@/stores/lastVisit'
 
 
+const props = defineProps({
+  category: {
+    type: String,
+    default: '',
+  },
+});
+
 
 const products = ref<Product[]>([]);
 
@@ -41,7 +48,11 @@ const lastVisitStore = useLastVisitStore()
 const fetchProducts = async (page: number) => {
   try {
     const offset = (page - 1) * 10; // Assuming 10 products per page
-    const response = await ApiService.get<{ data: Product[] }>(`/products?offset=${offset}&limit=10&title=${searchTerm.value}`);
+    const searchQuery = searchTerm.value ? `&title=${searchTerm.value}` : '';
+    const categoryQuery = props.category ? `&categorySlug=${props.category}` : '';
+
+
+    const response = await ApiService.get<{ data: Product[] }>(`/products?offset=${offset}&limit=10${searchQuery}${categoryQuery}`);
     products.value = response.data;
   } catch (error) {
     console.error('Error fetching data:', error);

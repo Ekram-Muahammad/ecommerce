@@ -1,6 +1,6 @@
 <template>
   <Categories />
-  <Products />
+  <Products category="furniture" />
   <favourites />
   <LastVisited />
 </template>
