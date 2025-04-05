@@ -29,14 +29,14 @@
               alt="Logo" />
           </div>
           <div class="hidden ml-10 sm:flex sm:space-x-6">
-            <a v-for="item in navItems" :key="item.path" :href="item.path" :class="[
+            <router-link v-for="item in navItems" :key="item.path" :to="item.path" :class="[
               'py-2 px-4 rounded-md text-sm font-medium transition-all duration-150',
               route.path === item.path
                 ? 'bg-gray-900 text-white'
                 : 'text-gray-300 hover:text-white hover:bg-gray-700'
             ]">
               {{ item.name }}
-            </a>
+            </router-link>
           </div>
         </div>
 
@@ -58,14 +58,14 @@
             class="w-full rounded-md border border-transparent bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus:border-white focus:outline-none focus:ring-2 focus:ring-white transition-all" />
         </div>
 
-        <a v-for="item in navItems" :key="item.path" :href="item.path" :class="[
+        <router-link v-for="item in navItems" :key="item.path" :to="item.path" :class="[
           'block rounded-md px-3 py-2 text-base font-medium transition-all duration-150',
           route.path === item.path
             ? 'bg-gray-900 text-white'
             : 'text-gray-300 hover:text-white hover:bg-gray-700'
         ]">
           {{ item.name }}
-        </a>
+        </router-link>
       </div>
     </div>
   </nav>
