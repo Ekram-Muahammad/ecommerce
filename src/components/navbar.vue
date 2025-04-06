@@ -24,10 +24,10 @@
 
         <!-- Logo and desktop nav -->
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex shrink-0 items-center">
+          <!-- <div class="flex shrink-0 items-center">
             <img class="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
               alt="Logo" />
-          </div>
+          </div> -->
           <div class="hidden ml-10 sm:flex sm:space-x-6">
             <router-link v-for="item in navItems" :key="item.path" :to="item.path" :class="[
               'py-2 px-4 rounded-md text-sm font-medium transition-all duration-150',
@@ -83,7 +83,7 @@ const isOpen = ref(false)
 const route = useRoute()
 
 const navItems = [
-  { name: 'Dashboard', path: '/' },
+  { name: 'Home', path: '/' },
   { name: 'categories', path: '/categories' },
   { name: 'favorites', path: '/favorites' },
 ]

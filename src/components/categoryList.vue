@@ -1,18 +1,15 @@
 <template>
-  <div class="w-full px-4 py-8">
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-10">Categories</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
 
-
-      <ProductCategory v-for="category in categories" :category="category" :key="category.id"
-
-     ></ProductCategory>
-
-
-    </div>
-
-  </div>
-
+<div class="mt-20 border-t border-gray-200 pt-8 px-4">
+  <h3 class="text-xl font-semibold text-gray-800 mb-8">Categories</h3>
+  <ul role="list" class="space-y-2">
+    <li v-for="category in categories" :key="category.id">
+      <router-link  :to="'/'+category.slug" class="block px-4 py-3 rounded-lg text-gray-900 hover:bg-gray-100 transition duration-200 ease-in-out">
+        {{ category.name }}
+      </router-link>
+    </li>
+  </ul>
+</div>
 
 </template>
 
@@ -21,7 +18,6 @@
 import { ref, onMounted } from 'vue';
 import ApiService from '@/services/api';
 import type { Category } from '../interfaces';
-import ProductCategory from '@/components/category.vue';
 
 
 
