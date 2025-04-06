@@ -66,13 +66,7 @@ const setPage = (pageNumber: number) => {
 };
 
 
-const toggleFavorite = (product: Product) => {
-  if (favoriteStore.isFavorite(product.id)) {
-    favoriteStore.removeFavorite(product.id);
-  } else {
-    favoriteStore.addFavorite(product);
-  }
-};
+
 
 const addLastVisited = (product: Product) => {
   if (!lastVisitStore.isLastVisited(product.id)) {
@@ -84,9 +78,7 @@ const isLastVisited = (productId: number): boolean => {
   return lastVisitStore.isLastVisited(productId);
 };
 
-const isFavorite = (productId: number): boolean => {
-  return favoriteStore.isFavorite(productId);
-};
+
 
 
 // Fetch data on component mount

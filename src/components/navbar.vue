@@ -41,7 +41,7 @@
         </div>
 
 
-        <div class="hidden sm:flex sm:items-center sm:ml-auto">
+        <div class="hidden sm:flex sm:items-center sm:ml-auto"  v-if="$route.name === 'home'">
           <input type="text" placeholder="Search..." v-model="searchTerm"
             class="w-48 rounded-md border border-transparent bg-gray-700 px-3 py-1.5 text-sm text-white placeholder-gray-400 focus:border-white focus:outline-none focus:ring-2 focus:ring-white transition-all" />
         </div>
@@ -53,7 +53,7 @@
     <div class="sm:hidden" id="mobile-menu" v-show="isOpen">
       <div class="space-y-1 px-2 pt-2 pb-3">
 
-        <div class="pb-2">
+        <div class="pb-2" v-if="$route.name === 'home'">
           <input type="text" placeholder="Search..." v-model="searchTerm"
             class="w-full rounded-md border border-transparent bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus:border-white focus:outline-none focus:ring-2 focus:ring-white transition-all" />
         </div>

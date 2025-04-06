@@ -33,44 +33,33 @@
     </div>
   </div>
 </template>
-
-<script>
-
-import { defineComponent,computed } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue';
 import { useFavoriteStore } from '@/stores/favourite';
+import { Product } from '@/interfaces/';
 
-export default defineComponent({
-  name: 'ProductCard',
-  props: {
-    product: {
-      type:  Object,
-      required: true
-    },
-
-  },
-  setup(props) {
-    const favoriteStore = useFavoriteStore(); // Access favorite store
-
-    // Computed property to check if product is a favorite
-    const isFavorite = computed(() => favoriteStore.isFavorite(props.product.id));
-
-    return {
-      isFavorite
-    };
-  },
-  methods: {
-    // Method to toggle favorite status
-    toggleFavorite() {
-      const favoriteStore = useFavoriteStore();
-      if (this.isFav) {
-        favoriteStore.removeFavorite(this.product.id);
-      } else {
-        favoriteStore.addFavorite(this.product);
-      }
-    }
+// Props
+const props = defineProps({
+  product: {
+    type: Object as PropType<Product>,
+    required: true
   }
 });
+
+const favoriteStore = useFavoriteStore();
+
+const isFavorite = computed(() => favoriteStore.isFavorite(props.product.id));
+
+// Method to toggle the favorite status
+const toggleFavorite = () => {
+  if (isFavorite.value) {
+    favoriteStore.removeFavorite(props.product.id);
+  } else {
+    favoriteStore.addFavorite(props.product);
+  }
+};
 </script>
+
 
 <style scoped>
 /* Scoped styling for the component, if needed */

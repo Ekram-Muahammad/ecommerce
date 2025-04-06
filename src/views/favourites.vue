@@ -1,5 +1,5 @@
 <template>
-  <favourites />
+  <favourites :showAll="true" />
 
 </template>
 
