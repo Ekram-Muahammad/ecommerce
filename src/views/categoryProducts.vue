@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import Products from '@/components/Products.vue';
+import Products from '@/components/products.vue';
 
 const route = useRoute();
 const category = route.params.slug;
