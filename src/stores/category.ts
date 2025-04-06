@@ -13,6 +13,7 @@ export const useCategoryStore = defineStore('category', () => {
       isLoading.value = true
       try {
         const response = await ApiService.get<{ data: Category[] }>('/categories')
+        // @ts-ignore
         categories.value = response.data
         isError.value = false
       } catch (error) {

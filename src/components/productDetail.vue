@@ -35,7 +35,7 @@
 
         <div class="flex space-x-4 mb-6">
 
-          <button @click="toggleFavorite()"
+          <button @click="toggleFavorite"
                         class="bg-gray-200 flex gap-2 items-center  text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -68,7 +68,7 @@
   import favourites from '@/components/favourites.vue';
   import { useFavoriteStore } from '@/stores/favourite';
 
-  const product = ref<Product>(null);
+  const product = ref<Product | null>(null);
   const route = useRoute();
   const slug = route.params.slug as string;
   const lastVisitStore = useLastVisitStore()
@@ -78,15 +78,24 @@
   const fetchItem = async () => {
     try {
       const response = await ApiService.get<{ data: Product }>(`/products/slug/`+slug);
+      // @ts-ignore
       product.value = response.data;
-      mainImage.value = product.value.images[0]
-      addLastVisited(product.value);
+
+      if (product.value !== null && product.value.images.length > 0) {
+  mainImage.value = product.value.images[0];  // Safely access images
+}
+
+if (product.value !== null) {
+  addLastVisited(product.value);
+}
+
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
   const addLastVisited = (product: Product) => {
+    if(product === null) return;
   if (!lastVisitStore.isLastVisited(product.id)) {
     lastVisitStore.addLastVisited(product);
   }
@@ -94,13 +103,22 @@
 
 const favoriteStore = useFavoriteStore();
 
-const isFavorite = computed(() => favoriteStore.isFavorite(product.value.id));
 
-const toggleFavorite = () => {
+const isFavorite = computed(() => {
+  if (product.value !== null) {
+    return favoriteStore.isFavorite(product.value.id);
+  }
+  return false;
+});
+
+const toggleFavorite = (event: MouseEvent) => {
   event.preventDefault();
+
   if (isFavorite.value) {
+    if (product.value === null) return;
     favoriteStore.removeFavorite(product.value.id);
   } else {
+    if (product.value === null) return;
     favoriteStore.addFavorite(product.value);
   }
 };

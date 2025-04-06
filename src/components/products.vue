@@ -58,6 +58,7 @@ const fetchProducts = async (page: number) => {
 
 
     const response = await ApiService.get<{ data: Product[] }>(`/products?offset=${offset}&limit=10${searchQuery}${categoryQuery}`);
+    // @ts-ignore
     products.value = response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -68,11 +69,14 @@ const sortProducts = () => {
   if (sortColumn.value) {
     products.value.sort((a, b) => {
       let comparison = 0;
+      if (sortColumn.value !== null) {
+
       if (a[sortColumn.value] < b[sortColumn.value]) {
         comparison = -1;
       } else if (a[sortColumn.value] > b[sortColumn.value]) {
         comparison = 1;
       }
+    }
 
       return comparison;
     });
