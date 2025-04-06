@@ -1,9 +1,9 @@
 <template>
   <div class="w-full px-4 py-8">
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-6">Products</h2>
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12">Products</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      <ProductCard v-for="product in products" :product="product"
-        @click="toggleFavorite(product); addLastVisited(product)"></ProductCard>
+      <ProductCard v-for="product in products" :product="product" :key="product.id"
+        @click="addLastVisited(product)"></ProductCard>
     </div>
 
     <Pagination :page="currentPage" :pagesNumber="totalPages" @update:page="setPage($event)" />

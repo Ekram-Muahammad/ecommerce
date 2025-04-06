@@ -5,30 +5,71 @@
       class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 transition">
 
     <!-- Product Info -->
+
+    <div class="mt-5 mb-3  flex justify-between items-start">
+        <h3 class="text-sm text-gray-700 font-semibold">
+          <router-link :to="'/category/'+product.category.id" class="hover:underline">{{ product.category.name }}</router-link>
+        </h3>
+        <span :class="{'text-red-500':isFavorite}"  @click="toggleFavorite()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5">
+            <path d="M3.172 4.828a4 4 0 015.657 0L10 6.243l1.171-1.415a4 4 0 115.657 5.657l-6.364 6.364a1 1 0 01-1.414 0L3.172 10.828a4 4 0 010-5.657z" />
+          </svg>
+        </span>
+    </div>
+
     <div class="mt-4 flex justify-between items-start">
       <div>
         <h3 class="text-sm text-gray-700 font-semibold">
-          <a :href="product.link" class="hover:underline">{{ product.title }}</a>
+          <p >{{ product.title }}</p>
         </h3>
         <p class="mt-1 text-sm text-gray-500">
           {{ product.description.length > 30 ? product.description.substring(0, 30) + " ..." : product.description }}
         </p>
       </div>
       <p class="text-sm font-medium text-gray-900">${{ product.price }}</p>
+
+
+
     </div>
   </div>
 </template>
 
 <script>
-export default {
+
+import { defineComponent,computed } from 'vue';
+import { useFavoriteStore } from '@/stores/favourite';
+
+export default defineComponent({
   name: 'ProductCard',
   props: {
     product: {
-      type: Object,
+      type:  Object,
       required: true
+    },
+
+  },
+  setup(props) {
+    const favoriteStore = useFavoriteStore(); // Access favorite store
+
+    // Computed property to check if product is a favorite
+    const isFavorite = computed(() => favoriteStore.isFavorite(props.product.id));
+
+    return {
+      isFavorite
+    };
+  },
+  methods: {
+    // Method to toggle favorite status
+    toggleFavorite() {
+      const favoriteStore = useFavoriteStore();
+      if (this.isFav) {
+        favoriteStore.removeFavorite(this.product.id);
+      } else {
+        favoriteStore.addFavorite(this.product);
+      }
     }
   }
-}
+});
 </script>
 
 <style scoped>
