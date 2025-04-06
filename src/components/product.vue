@@ -1,4 +1,6 @@
 <template>
+  <router-link :to="'/product/' + product.slug">
+
   <div class="group bg-white rounded-2xl shadow p-4">
     <!-- Product Image -->
     <img :src="product.images[0]" :alt="product.title"
@@ -32,6 +34,7 @@
 
     </div>
   </div>
+  </router-link>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';

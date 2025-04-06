@@ -1,9 +1,9 @@
 <template>
-  <div class="w-full px-4 py-8">
+  <div class="w-full px-4 py-8" v-if="products.length>0">
     <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12">Products</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
       <ProductCard v-for="product in products" :product="product" :key="product.id"
-        @click="addLastVisited(product)"></ProductCard>
+        ></ProductCard>
     </div>
 
     <Pagination :page="currentPage" :pagesNumber="totalPages" @update:page="setPage($event)" />
@@ -21,8 +21,6 @@ import Pagination from '@/components/pagination.vue';
 import ApiService from '@/services/api';
 import type { Product } from '../interfaces';
 import { useSearchStore } from '@/stores/search'
-import { useFavoriteStore } from '@/stores/favourite'
-import { useLastVisitStore } from '@/stores/lastVisit'
 
 
 const props = defineProps({
@@ -41,8 +39,6 @@ const totalPages = ref(5);
 const searchStore = useSearchStore()
 const searchTerm = computed(() => searchStore.searchTerm)
 
-const favoriteStore = useFavoriteStore()
-const lastVisitStore = useLastVisitStore()
 
 
 const fetchProducts = async (page: number) => {
@@ -60,7 +56,7 @@ const fetchProducts = async (page: number) => {
 };
 
 const setPage = (pageNumber: number) => {
-  if (pageNumber < 1 || pageNumber > totalPages.value) return; // Validate page number
+  if (pageNumber < 1 || pageNumber > totalPages.value) return; 
   currentPage.value = pageNumber;
   fetchProducts(pageNumber);
 };
@@ -68,15 +64,8 @@ const setPage = (pageNumber: number) => {
 
 
 
-const addLastVisited = (product: Product) => {
-  if (!lastVisitStore.isLastVisited(product.id)) {
-    lastVisitStore.addLastVisited(product);
-  }
-};
 
-const isLastVisited = (productId: number): boolean => {
-  return lastVisitStore.isLastVisited(productId);
-};
+
 
 
 
