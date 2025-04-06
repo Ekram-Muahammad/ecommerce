@@ -53,8 +53,8 @@ const favoriteStore = useFavoriteStore();
 
 const isFavorite = computed(() => favoriteStore.isFavorite(props.product.id));
 
-// Method to toggle the favorite status
 const toggleFavorite = () => {
+  event.preventDefault();
   if (isFavorite.value) {
     favoriteStore.removeFavorite(props.product.id);
   } else {

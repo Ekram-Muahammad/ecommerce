@@ -56,7 +56,7 @@ const fetchProducts = async (page: number) => {
 };
 
 const setPage = (pageNumber: number) => {
-  if (pageNumber < 1 || pageNumber > totalPages.value) return; 
+  if (pageNumber < 1 || pageNumber > totalPages.value) return;
   currentPage.value = pageNumber;
   fetchProducts(pageNumber);
 };
