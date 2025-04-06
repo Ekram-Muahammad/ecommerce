@@ -1,6 +1,14 @@
 <template>
   <div class="w-full px-4 py-8" v-if="products.length>0">
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12">Products</h2>
+    <div class="flex justify-between">
+
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12 mx-3">Products</h2>
+
+    <div class="flex items-center">
+       Sort By :  &nbsp; &nbsp; <SearchableDropdown v-model="sortColumn" :options="['title', 'price']" placeholder="Search by title or price" />
+    </div>
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
       <ProductCard v-for="product in products" :product="product" :key="product.id"
         ></ProductCard>
@@ -21,6 +29,7 @@ import Pagination from '@/components/pagination.vue';
 import ApiService from '@/services/api';
 import type { Product } from '../interfaces';
 import { useSearchStore } from '@/stores/search'
+import SearchableDropdown from '@/components/multi-select.vue';
 
 
 const props = defineProps({
@@ -38,7 +47,7 @@ const totalPages = ref(5);
 
 const searchStore = useSearchStore()
 const searchTerm = computed(() => searchStore.searchTerm)
-
+const sortColumn = ref(null);
 
 
 const fetchProducts = async (page: number) => {
@@ -52,6 +61,21 @@ const fetchProducts = async (page: number) => {
     products.value = response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
+  }
+};
+
+const sortProducts = () => {
+  if (sortColumn.value) {
+    products.value.sort((a, b) => {
+      let comparison = 0;
+      if (a[sortColumn.value] < b[sortColumn.value]) {
+        comparison = -1;
+      } else if (a[sortColumn.value] > b[sortColumn.value]) {
+        comparison = 1;
+      }
+
+      return comparison;
+    });
   }
 };
 
@@ -78,4 +102,7 @@ onMounted(async () => {
 watch(searchTerm, (newSearchTerm, oldSearchTerm) => {
   fetchProducts(currentPage.value);
 })
+
+watch([sortColumn], sortProducts);
+
 </script>
