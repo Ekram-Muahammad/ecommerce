@@ -4,8 +4,15 @@ import Navbar from '@/components/navbar.vue'
 </script>
 
 <template>
-  <div class="container w-screen mx-auto px-4">
+  <div class="w-screen">
     <Navbar />
     <RouterView />
   </div>
 </template>
+
+<style>
+#app {
+  max-width: 100vw !important;
+  padding: 0px !important;
+}
+</style>

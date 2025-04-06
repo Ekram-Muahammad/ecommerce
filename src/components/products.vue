@@ -53,7 +53,7 @@ const fetchProducts = async (page: number) => {
 
 
     const response = await ApiService.get<{ data: Product[] }>(`/products?offset=${offset}&limit=10${searchQuery}${categoryQuery}`);
-    products.value = response.data.data;
+    products.value = response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }

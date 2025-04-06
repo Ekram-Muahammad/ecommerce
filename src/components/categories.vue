@@ -29,7 +29,7 @@ const categories = ref<Category[]>([]);
 const fetchCategories = async () => {
   try {
     const response = await ApiService.get<{ data: Category[] }>(`/categories`);
-    categories.value = response.data.data;
+    categories.value = response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
