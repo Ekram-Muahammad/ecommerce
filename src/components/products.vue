@@ -15,9 +15,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from 'vue';
-import ProductCard from '@/components/Product.vue';
+import ProductCard from '@/components/product.vue';
 
-import Pagination from '@/components/Pagination.vue';
+import Pagination from '@/components/pagination.vue';
 import ApiService from '@/services/api';
 import { Product } from '../interfaces';
 import { useSearchStore } from '@/stores/search'

@@ -10,7 +10,7 @@
 
 <script setup lang="ts" >
 import { ref, computed } from 'vue';
-import ProductCard from '@/components/Product.vue';
+import ProductCard from '@/components/product.vue';
 import { useLastVisitStore } from '@/stores/lastVisit'
 
 const lastVisitStore = useLastVisitStore()
