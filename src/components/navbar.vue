@@ -43,7 +43,7 @@
 
         <div class="hidden sm:flex sm:items-center sm:ml-auto"  v-if="$route.name === 'home'">
           <input type="text" placeholder="Search..." v-model="searchTerm"
-            class="w-48 rounded-md border border-transparent bg-gray-700 px-3 py-1.5 text-sm text-white placeholder-gray-400 focus:border-white focus:outline-none focus:ring-2 focus:ring-white transition-all" />
+            class="w-60 rounded-md border border-transparent bg-gray-700 px-3 py-1.5 text-sm text-white placeholder-gray-400 focus:border-white focus:outline-none focus:ring-2 focus:ring-white transition-all" />
         </div>
 
       </div>

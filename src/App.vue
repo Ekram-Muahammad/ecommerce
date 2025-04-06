@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import Navbar from '@/components/navbar.vue'
 </script>
 
@@ -14,5 +14,21 @@ import Navbar from '@/components/navbar.vue'
 #app {
   max-width: 100vw !important;
   padding: 0px !important;
+
+}
+
+*,
+*::before,
+*::after {
+  margin: revert !important;
+  font-weight: revert !important;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
 }
 </style>

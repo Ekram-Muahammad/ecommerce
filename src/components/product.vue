@@ -8,11 +8,11 @@
 
     <!-- Product Info -->
 
-    <div class="mt-5 mb-3  flex justify-between items-start">
+    <div class="mt-5  flex justify-between items-center">
         <h3 class="text-sm text-gray-700 font-semibold">
           <router-link :to="'/category/'+product.category.id" class="hover:underline">{{ product.category.name }}</router-link>
         </h3>
-        <span :class="{'text-red-500':isFavorite}"  @click="toggleFavorite()">
+        <span :class="{'text-red-500':isFavorite,'mt-3':true}"  @click="toggleFavorite()">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5">
             <path d="M3.172 4.828a4 4 0 015.657 0L10 6.243l1.171-1.415a4 4 0 115.657 5.657l-6.364 6.364a1 1 0 01-1.414 0L3.172 10.828a4 4 0 010-5.657z" />
           </svg>
@@ -41,7 +41,6 @@ import { computed } from 'vue';
 import { useFavoriteStore } from '@/stores/favourite';
 import { Product } from '@/interfaces/';
 
-// Props
 const props = defineProps({
   product: {
     type: Object as PropType<Product>,
