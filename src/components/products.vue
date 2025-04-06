@@ -19,7 +19,7 @@ import ProductCard from '@/components/product.vue';
 
 import Pagination from '@/components/pagination.vue';
 import ApiService from '@/services/api';
-import { Product } from '../interfaces';
+import type { Product } from '../interfaces';
 import { useSearchStore } from '@/stores/search'
 import { useFavoriteStore } from '@/stores/favourite'
 import { useLastVisitStore } from '@/stores/lastVisit'
@@ -53,7 +53,7 @@ const fetchProducts = async (page: number) => {
 
 
     const response = await ApiService.get<{ data: Product[] }>(`/products?offset=${offset}&limit=10${searchQuery}${categoryQuery}`);
-    products.value = response.data;
+    products.value = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }

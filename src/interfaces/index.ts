@@ -1,2 +1,2 @@
-export * from './category.interface'
-export * from './product.interface'
+export type { Category } from './category.interface'
+export type { Product } from './product.interface'

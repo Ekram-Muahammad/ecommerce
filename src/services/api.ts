@@ -1,6 +1,7 @@
 // src/services/ApiService.js
 
 import axios from 'axios'
+import type { AxiosResponse } from 'axios'
 
 const API_BASE_URL = 'https://api.escuelajs.co/api/v1'
 
@@ -13,7 +14,7 @@ class ApiService {
     },
   })
 
-  async get<T>(endpoint: string): Promise<T> {
+  async get<T>(endpoint: string): Promise<AxiosResponse<T>> {
     try {
       const response = await this.axiosInstance.get<T>(endpoint)
       return response

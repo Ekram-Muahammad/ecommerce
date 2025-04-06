@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import ApiService from '@/services/api';
-import { Category } from '../interfaces';
+import type { Category } from '../interfaces';
 import ProductCategory from '@/components/category.vue';
 
 
@@ -29,7 +29,7 @@ const categories = ref<Category[]>([]);
 const fetchCategories = async () => {
   try {
     const response = await ApiService.get<{ data: Category[] }>(`/categories`);
-    categories.value = response.data;
+    categories.value = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
