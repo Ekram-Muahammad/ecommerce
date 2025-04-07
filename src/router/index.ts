@@ -6,7 +6,7 @@ import categoryProducts from '../views/categoryProducts.vue'
 import product from '../views/product.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/:category?',
