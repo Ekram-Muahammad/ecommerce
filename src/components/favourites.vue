@@ -5,6 +5,10 @@
       <ProductCard v-for="product in favoriteProducts" :product="product" :key="product.id"></ProductCard>
     </div>
   </div>
+
+  <div v-if="showEmpty && favoriteProducts.length == 0">
+    <h2 class="text-2xl text-center font-bold tracking-tight text-gray-900 mb-6">No Favourites Found</h2>
+  </div>
 </template>
 
 
@@ -17,7 +21,11 @@ const props = defineProps({
   showAll: {
     type: Boolean,
     default: false,
-  }
+  },
+  showEmpty: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const favoriteStore = useFavoriteStore()

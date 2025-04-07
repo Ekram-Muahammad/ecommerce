@@ -17,6 +17,14 @@
     <Pagination :page="currentPage" :pagesNumber="totalPages" @update:page="setPage($event)" />
   </div>
 
+  <div v-if="products.length == 0 && isLoading == false">
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12 mx-3">No Products Found</h2>
+  </div>
+
+  <div v-if="isLoading">
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12 mx-3">Loading...</h2>
+  </div>
+
 
 </template>
 
@@ -49,6 +57,7 @@ const searchStore = useSearchStore()
 const searchTerm = computed(() => searchStore.searchTerm)
 const sortColumn = ref(null);
 
+const isLoading = ref(false);
 
 const fetchProducts = async (page: number) => {
   try {
@@ -56,10 +65,12 @@ const fetchProducts = async (page: number) => {
     const searchQuery = searchTerm.value ? `&title=${searchTerm.value}` : '';
     const categoryQuery = props.category ? `&categorySlug=${props.category}` : '';
 
+    isLoading.value = true;
 
     const response = await ApiService.get<{ data: Product[] }>(`/products?offset=${offset}&limit=10${searchQuery}${categoryQuery}`);
     // @ts-ignore
     products.value = response.data;
+    isLoading.value = false;
   } catch (error) {
     console.error('Error fetching data:', error);
   }

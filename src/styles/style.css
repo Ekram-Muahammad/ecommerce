@@ -1,7 +1,10 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 body {
   width: 100%;
   overflow-x: hidden;
+  min-height: 100vh;
   overflow-y: auto !important;
 }
