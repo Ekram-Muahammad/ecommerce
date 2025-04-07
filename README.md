@@ -1,18 +1,37 @@
 # ecommerce
 
-This template should help get you started developing with Vue 3 in Vite.
+## 🚀 Overview
 
-## Recommended IDE Setup
+This project is a simple **Vue.js E-Commerce Website** built using the [Platzi Fake Store API](https://fakeapi.platzi.com). It demonstrates key e-commerce functionalities such as product listing, category filtering, search, favorites management, and detailed product views.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+The application focuses on **functionality**, **clean architecture**, and **state management** using **Pinia**. The styling is handled with **Tailwind CSS**, aiming for a minimal and responsive user interface.
 
-## Type Support for `.vue` Imports in TS
+### ✅ Key Features
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Browse products by category
+- Search products by title
+- Pagination for product listings
+- Add/remove favorite products
+- Track and display last visited products
+- Detailed product view page
+- Sorting by price or name
+- lazyLoading of image
 
-## Customize configuration
+### 🛠 Tech Stack
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- **Vue 3**
+- **Vite**
+- **TypeScript**
+- **Pinia** (State Management)
+- **Vue Router**
+- **Tailwind CSS**
+- **Platzi Fake Store API**
+
+### 🌐 Live Demo
+
+Deployed on **Netlify**: https://elryan-ecommerce.netlify.app/
+
+> Note: Due to server limitations, history mode is not fully supported on Netlify. Refreshing or navigating directly to nested routes may lead to a 404 error. Switching to hash mode or configuring a `_redirects` file can resolve this if needed.
 
 ## Project Setup
 
@@ -30,10 +49,4 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```

@@ -33,6 +33,11 @@ const router = createRouter({
       name: 'product',
       component: product,
     },
+    {
+      path: '/:catchAll(.*)',
+      name: 'NotFound',
+      component: home,
+    },
   ],
 })
 

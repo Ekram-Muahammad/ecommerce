@@ -11,7 +11,7 @@
       <div class="mt-5  flex justify-between items-center">
         <h3 class="text-sm text-gray-700 font-semibold">
           <router-link :to="'/category/' + product.category.id" class="hover:underline">{{ product.category.name
-            }}</router-link>
+          }}</router-link>
         </h3>
         <span :class="{ 'text-red-500': isFavorite, 'mt-3': true }" @click="toggleFavorite">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5">

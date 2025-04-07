@@ -50,6 +50,13 @@
       </div>
     </div>
 
+    <div v-if="isLoading" class="text-center">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12 mx-3">Loading...</h2>
+    </div>
+
+    <div v-if="isError" class="text-center">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12 mx-3">Error fetching data</h2>
+    </div>
 
   </div>
 
@@ -72,11 +79,17 @@ const route = useRoute();
 const slug = route.params.slug as string;
 const lastVisitStore = useLastVisitStore()
 const mainImage = ref<string>('')
+const isLoading = ref(true);
+const isError = ref(false);
 
 
 const fetchItem = async () => {
   try {
+    isLoading.value = true;
+    isError.value = false;
     const response = await ApiService.get<{ data: Product }>(`/products/slug/` + slug);
+    isLoading.value = false;
+
     // @ts-ignore
     product.value = response.data;
 
@@ -89,6 +102,8 @@ const fetchItem = async () => {
     }
 
   } catch (error) {
+    isLoading.value = false;
+    isError.value = true;
     console.error('Error fetching data:', error);
   }
 };
