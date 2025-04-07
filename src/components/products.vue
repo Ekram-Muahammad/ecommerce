@@ -14,7 +14,8 @@
       <ProductCard v-for="product in products" :product="product" :key="product.id"></ProductCard>
     </div>
 
-    <Pagination :page="currentPage" :pagesNumber="totalPages" @update:page="setPage($event)" />
+    <Pagination :page="currentPage" :pagesNumber="(products.length == 10 ? currentPage + 1 : currentPage)"
+      @update:page="setPage($event)" />
   </div>
 
   <div v-if="products.length == 0 && isLoading == false">
@@ -51,7 +52,7 @@ const props = defineProps({
 const products = ref<Product[]>([]);
 
 const currentPage = ref(1);
-const totalPages = ref(5);
+// const totalPages = ref(5);
 
 const searchStore = useSearchStore()
 const searchTerm = computed(() => searchStore.searchTerm)
@@ -95,7 +96,7 @@ const sortProducts = () => {
 };
 
 const setPage = (pageNumber: number) => {
-  if (pageNumber < 1 || pageNumber > totalPages.value) return;
+  if (pageNumber < 1 || pageNumber > currentPage.value + 1) return;
   currentPage.value = pageNumber;
   fetchProducts(pageNumber);
 };
