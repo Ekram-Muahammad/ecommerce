@@ -1,17 +1,17 @@
 <template>
-  <div class="w-full px-4 py-8" v-if="products.length>0">
+  <div class="w-full px-4 py-8" v-if="products.length > 0">
     <div class="flex justify-between">
 
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12 mx-3">Products</h2>
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-12 mx-3">Products</h2>
 
-    <div class="flex items-center">
-       Sort By :  &nbsp; &nbsp; <SearchableDropdown v-model="sortColumn" :options="['title', 'price']" placeholder="Search by title or price" />
-    </div>
+      <div class="flex items-center">
+        Sort By : &nbsp; &nbsp;
+        <SearchableDropdown v-model="sortColumn" :options="['title', 'price']" placeholder="Search by title or price" />
+      </div>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      <ProductCard v-for="product in products" :product="product" :key="product.id"
-        ></ProductCard>
+      <ProductCard v-for="product in products" :product="product" :key="product.id"></ProductCard>
     </div>
 
     <Pagination :page="currentPage" :pagesNumber="totalPages" @update:page="setPage($event)" />
@@ -71,12 +71,12 @@ const sortProducts = () => {
       let comparison = 0;
       if (sortColumn.value !== null) {
 
-      if (a[sortColumn.value] < b[sortColumn.value]) {
-        comparison = -1;
-      } else if (a[sortColumn.value] > b[sortColumn.value]) {
-        comparison = 1;
+        if (a[sortColumn.value] < b[sortColumn.value]) {
+          comparison = -1;
+        } else if (a[sortColumn.value] > b[sortColumn.value]) {
+          comparison = 1;
+        }
       }
-    }
 
       return comparison;
     });

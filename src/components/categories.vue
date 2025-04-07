@@ -6,9 +6,8 @@
     <div v-else-if="categoryStore.isError">Error fetching categories</div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      <ProductCategory v-for="category in categoryStore.categories" :category="category" :key="category.id"
-
-     ></ProductCategory>
+      <ProductCategory v-for="category in categoryStore.categories" :category="category" :key="category.id">
+      </ProductCategory>
     </div>
 
   </div>
@@ -18,7 +17,7 @@
 
 
 <script setup lang="ts">
-import {  onMounted } from 'vue';
+import { onMounted } from 'vue';
 import ProductCategory from '@/components/category.vue';
 
 import { useCategoryStore } from '@/stores/category';

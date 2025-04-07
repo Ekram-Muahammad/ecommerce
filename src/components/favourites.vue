@@ -8,7 +8,7 @@
 </template>
 
 
-<script setup lang="ts" >
+<script setup lang="ts">
 import { defineProps, computed } from 'vue';
 import ProductCard from '@/components/product.vue';
 import { useFavoriteStore } from '@/stores/favourite'
